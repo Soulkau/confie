@@ -62,7 +62,8 @@ pub fn load(input: TokenStream) -> TokenStream {
 fn expand(Input { file, sections }: Input) -> syn::Result<TS> {
     let err = |msg: String| syn::Error::new(file.span(), msg);
 
-    let dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();
+    let dir = std::env::var("CARGO_MANIFEST_DIR")
+        .map_err(|_| err("CARGO_MANIFEST_DIR not set".into()))?;
     let path = std::path::Path::new(&dir).join(file.value());
     let raw =
         std::fs::read_to_string(&path).map_err(|e| err(format!("{}: {e}", path.display())))?;
@@ -92,7 +93,9 @@ fn expand(Input { file, sections }: Input) -> syn::Result<TS> {
         items.push(quote!(pub const #konst: #ty = #ty { #(#fields),* };));
     }
 
-    let p = path.to_str().unwrap();
+    let p = path
+        .to_str()
+        .ok_or_else(|| err("path is not valid UTF-8".into()))?;
     Ok(quote! {
         const _: &str = include_str!(#p);
         #(#items)*
