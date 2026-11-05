@@ -47,6 +47,14 @@ fn lit(v: &toml::Value) -> Option<TS> {
             quote!(#l)
         }
         toml::Value::Boolean(b) => quote!(#b),
+        toml::Value::Float(f) => {
+            let l = Literal::f64_unsuffixed(*f);
+            quote!(#l)
+        }
+        toml::Value::Array(a) => {
+            let items = a.iter().map(lit).collect::<Option<Vec<_>>>()?;
+            quote!(&[#(#items),*])
+        }
         _ => return None,
     })
 }
