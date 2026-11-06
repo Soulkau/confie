@@ -11,6 +11,7 @@ struct Section {
     name: Ident,
     ty: Path,
 }
+
 struct Input {
     file: LitStr,
     sections: Punctuated<Section, Token![,]>,
@@ -59,6 +60,7 @@ fn lit(v: &toml::Value) -> Option<TS> {
     })
 }
 
+/// Generates `const` configurations from a TOML file at compile time.
 #[proc_macro]
 pub fn load(input: TokenStream) -> TokenStream {
     let input = syn::parse_macro_input!(input as Input);
