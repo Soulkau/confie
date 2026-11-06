@@ -1,5 +1,5 @@
 # Confie
-Simple library that exposes ability to generate const configs from toml files.
+Simple library that exposes ability to generate const configs from TOML files.
 
 ## Usage
 Here is the really simple config with 2 sections:
@@ -51,3 +51,7 @@ pub const BAR: BarConfig = BarConfig {
     array: &["one", "two", "three"],
 };
 ```
+
+## License
+
+Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT license](LICENSE-MIT) at your option.
