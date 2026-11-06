@@ -2,6 +2,13 @@
 name = "confie"
 version = "0.1.0"
 edition = "2024"
+license = "MIT OR Apache-2.0"
+authors = ["Soulkau"]
+description = "Simple compile-time configuration from TOML files."
+repository = "https://github.com/Soulkau/confie"
+readme = "README.md"
+keywords = ["config", "configuration", "toml", "proc-macro"]
+categories = ["config", "development-tools"]
 
 [lib]
 proc-macro=true
