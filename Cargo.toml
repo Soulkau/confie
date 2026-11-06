@@ -14,7 +14,7 @@ categories = ["config", "development-tools"]
 proc-macro=true
 
 [dependencies]
-toml = "1.1.8+spec-1.1.0"
+toml = "1.2.1"
 syn = { version = "3.0.9", features = ["full"] }
 quote = "1.0.47"
 proc-macro2 = "1"
